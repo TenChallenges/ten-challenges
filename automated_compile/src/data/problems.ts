@@ -22,7 +22,7 @@ export const problems: Problem[] = [
   },
   {
     id: "challenge_4",
-    title: "Sidorenko Conjecture for Half-Graphs",
+    title: "Sidorenko Conjecture for Bipartite Graphs with Bounded Sides",
     htmlPath: "content/html/challenge_04.html",
   },
   {

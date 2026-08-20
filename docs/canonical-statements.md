@@ -81,40 +81,22 @@ theorem ramsey_bounds : ∃ d₁ d₂ : ℝ, |d₁ - d₂| ≤ (4 - √2) * (0.9
 
 **Proposed change:** rename `ramsey_bounds` → `challenge_3`. The rest stays. The current `def r : ℕ := 1` should become `def r : ℕ := sorry` so users supply their `r`.
 
-## §4 — challenge_04 (Sidorenko for Half-Graphs)
+## §4 — challenge_04 (Sidorenko for bounded-side bipartite graphs)
 
-The file is empty. Sidorenko's conjecture for the half-graph `H_r`
-states that the homomorphism density of `H_r` in any graph `G` is at
-least the random-graph baseline.
-
-**Proposed canonical theorem (needs your review):**
+The parameter `r` bounds the cardinality of each side of a bipartition of
+`H`. The canonical theorem asserts Sidorenko's density inequality for every
+such finite bipartite graph `H` and every nonempty finite host graph `G`.
 
 ```lean
-import Mathlib.Combinatorics.SimpleGraph.Basic
-import Mathlib.Combinatorics.SimpleGraph.Hom
-
-open SimpleGraph
-
-variable {V : Type*} [Fintype V]
-
-/-- The half-graph H_r: bipartite graph on vertex set Fin r ⊕ Fin r,
-    with (i, j) adjacent iff i ≤ j. -/
-def halfGraph (r : ℕ) : SimpleGraph (Fin r ⊕ Fin r) := sorry
-
-/-- Sidorenko-type homomorphism count bound for a fixed forbidden graph H. -/
-def SidorenkoBound (H : SimpleGraph W) (G : SimpleGraph V) [Fintype W] [Fintype V] : Prop :=
-  -- t(H, G) ≥ t(K₂, G)^|E(H)|  in the standard normalization
-  sorry
+def statement_04 (r : ℕ) : Prop :=
+  ∀ {W V : Type} [Fintype W] [Fintype V] [Nonempty V]
+    (H : SimpleGraph W) (G : SimpleGraph V),
+    BipartiteBoundedBy H r → SidorenkoFor H G
 
 def r : ℕ := sorry
 
-theorem challenge_4 :
-    ∀ (G : SimpleGraph V), SidorenkoBound (halfGraph r) G := sorry
+theorem challenge_4 : statement_04 r := sorry
 ```
-
-**Open questions:**
-- Mathlib's SimpleGraph API may not have `SidorenkoBound` as a concept yet. The user might need to define it themselves, OR we provide a canonical definition in the file.
-- Is "for all G" the right quantification, or should `V` be in the statement?
 
 ## §5 — challenge_05 (Erdős-Hajnal)
 

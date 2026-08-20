@@ -10,9 +10,7 @@ import Mathlib.SetTheory.Cardinal.Finite
 
 Used by both `challenge_04` (specific `r`) and `challenge_04_univ` (∀r):
 homomorphism density, the Sidorenko inequality, and the bounded-side
-bipartiteness predicate live here.  (`halfGraph` is kept as auxiliary
-material; the challenge itself is stated for all bounded-side bipartite
-graphs.)
+bipartiteness predicate live here.
 -/
 
 open SimpleGraph

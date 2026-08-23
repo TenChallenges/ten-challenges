@@ -1,5 +1,5 @@
 import Mathlib.Data.Finset.Card
-import Mathlib.Data.Nat.Lattice
+import Mathlib.Order.Lattice.Nat
 
 /-
 Ryser's hypergraph conjecture for the chosen `r` (with `2 ≤ r`):
@@ -37,7 +37,7 @@ def IsUniform (r : ℕ) : Prop :=
 An `r`-partite hypergraph has its vertices partitioned into `r` parts, and
 every edge meets every part in exactly one vertex.
 -/
-def IsPartite (r : ℕ) [DecidableEq V] : Prop :=
+def IsPartite (r : ℕ) : Prop :=
   exists parts : Fin r -> Finset V,
     (∀ v : V, v ∈ H.vertices <-> exists i : Fin r, v ∈ parts i) ∧
       (∀ i j : Fin r, i ≠ j -> Disjoint (parts i) (parts j)) ∧

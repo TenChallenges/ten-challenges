@@ -7,7 +7,7 @@ Do not edit or copy this file. In your own `Submission/Main.lean`, write
 on the website for the full layout.
 -/
 
-import Mathlib.Combinatorics.SimpleGraph.Coloring.VertexColoring
+import Mathlib.Combinatorics.SimpleGraph.Coloring.Vertex
 import Defs_and_Lems.Minor
 
 variable {V : Type*} [Fintype V]

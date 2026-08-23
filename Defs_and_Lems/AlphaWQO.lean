@@ -30,7 +30,7 @@ noncomputable def VStar (Q : Type u) (o : Ordinal.{u}) : Type u :=
 
 @[simp] theorem VStar_succ (Q : Type u) (o : Ordinal.{u}) :
     VStar Q (Order.succ o) = {S : Set (VStar Q o) // S.Nonempty} :=
-  Ordinal.limitRecOn_succ ..
+  Ordinal.limitRecOn_add_one ..
 
 theorem VStar_limit (Q : Type u) {o : Ordinal.{u}} (h : Order.IsSuccLimit o) :
     VStar Q o = Σ i : o.ToType, VStar Q (Ordinal.typein (α := o.ToType) (· < ·) i) :=

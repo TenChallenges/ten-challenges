@@ -15,8 +15,9 @@ def SimpleGraph.IsHFree {V : Type*} (G : SimpleGraph V) (H : SimpleGraph W) : Pr
 def ErdosHajnalConjectureFor : Prop :=
   ∃ c : ℝ, 0 < c ∧
     ∀ {V : Type} [Fintype V] (G : SimpleGraph V), G.IsHFree H →
-    ∃ (t : ℕ), (t : ℝ) ≥ (Fintype.card V : ℝ) ^ (c : ℝ) ∧
-    ∃ (s : Finset V), (G.IsNClique t s ∨ Gᶜ.IsNClique t s)
+    ∃ (t : ℕ) (s : Finset V),
+      (G.IsNClique t s ∨ Gᶜ.IsNClique t s) ∧
+      (t : ℝ) ≥ (Fintype.card V : ℝ) ^ (c : ℝ)
 
 /-- The Erdős–Hajnal conjecture for the path graph `P_r`, at parameter `r`. The
 single named statement shared by the canonical theorem and the submission

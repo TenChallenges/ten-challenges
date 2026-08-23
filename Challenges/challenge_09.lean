@@ -13,7 +13,7 @@ def occurrences (F : Finset (Finset U)) (x : U) : ℕ :=
 
 /-- The density of an element with respect to a finite family. -/
 def density (F : Finset (Finset U)) (x : U) : ℚ :=
-  (occurrences F x : ℚ) / F.card
+  (occurrences F x : ℚ) / max 1 F.card
 
 /-- The two degenerate families excluded from the union-closed sets conjecture. -/
 def Nondegenerate (F : Finset (Finset U)) : Prop :=

@@ -16,7 +16,7 @@ variable {d : ℕ}
 /- A set of centres `C ⊆ ℝ^d` is a *unit packing* if distinct centres are at
 distance at least `2` (the open unit balls around the centres are disjoint). -/
 def IsUnitPacking (C : Set (EuclideanSpace ℝ (Fin d))) : Prop :=
-  ∀ ⦃x y⦄, x ∈ C → y ∈ C → x ≠ y → 2 ≤ dist x y
+  ∀ ⦃x⦄, x ∈ C → ∀ ⦃y⦄, y ∈ C → x ≠ y → 2 ≤ dist x y
 
 /- The (upper) density of a packing `C`: the
 `limsup` as `R → ∞` of the fraction of the ball `B(0, R)`

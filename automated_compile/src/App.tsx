@@ -291,11 +291,11 @@ function App() {
               <li style={{ marginBottom: 12 }}>
                 Clone the problem set —{" "}
                 <a
-                  href="https://github.com/utkuokur/lean-challenges"
+                  href="https://github.com/TenChallenges/ten-challenges"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  github.com/utkuokur/lean-challenges
+                  github.com/TenChallenges/ten-challenges
                 </a>{" "}
                 — and put your solution in the <code>Submission/</code> folder.
               </li>

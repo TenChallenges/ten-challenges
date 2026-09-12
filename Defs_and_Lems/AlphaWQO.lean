@@ -16,8 +16,7 @@ def IsWQO {Q : Type u} (le : Q → Q → Prop) : Prop :=
 
 /- Level `o` of the cumulative hierarchy over `Q`: `VStar Q 0 = Q`,
 `VStar Q (succ o)` is the nonempty subsets of `VStar Q o`, and at a limit
-`o` it is the disjoint union of all lower levels, reindexed through
-`o.ToType` to stay in `Type u`. -/
+`o` it is the disjoint union of all lower levels. -/
 noncomputable def VStar (Q : Type u) (o : Ordinal.{u}) : Type u :=
   Ordinal.limitRecOn o
     Q
@@ -25,10 +24,10 @@ noncomputable def VStar (Q : Type u) (o : Ordinal.{u}) : Type u :=
     (fun o _ ih => Σ i : o.ToType, ih (Ordinal.typein (α := o.ToType) (· < ·) i)
       (Ordinal.typein_lt_self i))
 
-@[simp] theorem VStar_zero (Q : Type u) : VStar Q 0 = Q :=
+theorem VStar_zero (Q : Type u) : VStar Q 0 = Q :=
   Ordinal.limitRecOn_zero ..
 
-@[simp] theorem VStar_succ (Q : Type u) (o : Ordinal.{u}) :
+theorem VStar_succ (Q : Type u) (o : Ordinal.{u}) :
     VStar Q (Order.succ o) = {S : Set (VStar Q o) // S.Nonempty} :=
   Ordinal.limitRecOn_add_one ..
 
@@ -72,19 +71,18 @@ noncomputable def leStar {Q : Type u} (le : Q → Q → Prop) (a : Ordinal.{u}) 
 def IsAlphaWQO {Q : Type u} (le : Q → Q → Prop) (a : Ordinal.{u}) : Prop :=
   IsWQO (fun X Y : VStar Q a => leStar le a X a Y)
 
-structure FiniteGraph where
-  V : Type
-  [fintypeV : Fintype V]
-  graph : SimpleGraph V
-
-attribute [instance] FiniteGraph.fintypeV
+/-- A finite simple graph, given as a graph on `Fin n` for some `n`. Every finite
+graph is isomorphic to one of this form, and the minor relation is invariant under
+isomorphism, so nothing is lost; the payoff is that `FiniteGraph : Type`, which keeps
+the ordinal parameter of the challenge in universe `0`. -/
+def FiniteGraph : Type := Σ n : ℕ, SimpleGraph (Fin n)
 
 def FiniteGraph.MinorLE (G H : FiniteGraph) : Prop :=
-  Nonempty (Minor G.graph H.graph)
+  Nonempty (Minor G.2 H.2)
 
 /-- A finite planar simple graph. -/
-def PlanarGraph : Type 1 :=
-  {G : FiniteGraph // G.graph.IsWagnerPlanar}
+def PlanarGraph : Type :=
+  {G : FiniteGraph // G.2.IsWagnerPlanar}
 
 /-- The minor order on finite planar graphs. -/
 def PlanarGraph.MinorLE (G H : PlanarGraph) : Prop :=

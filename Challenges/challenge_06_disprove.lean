@@ -5,4 +5,4 @@ import Challenges.challenge_06
 # Disprove direction
 -/
 
-theorem challenge_6_disprove : ¬ ∀ r : Ordinal.{1}, statement_06 r := sorry
+theorem challenge_6_disprove : ¬ ∀ r : Ordinal, statement_06 r := sorry

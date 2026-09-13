@@ -1,7 +1,7 @@
 name: Shim drift check
 
 # Every canonical theorem statement in Challenges/ has a matching
-# signature-shim template in lean-challenges-submissions
+# signature-shim template in ten-challenges-submissions
 # (scripts/generate_check.py), and the two must move in lockstep. This
 # workflow runs the drift checker from the submissions repo against the
 # pushed canon: each shim is rebuilt against a mock submission that
@@ -10,7 +10,7 @@ name: Shim drift check
 # axiom gate.
 #
 # If this goes red after you edit a challenge statement, update the
-# matching CHECKS template(s) in lean-challenges-submissions
+# matching CHECKS template(s) in ten-challenges-submissions
 # scripts/generate_check.py — see that script's header for the routine.
 
 on:
@@ -42,7 +42,7 @@ jobs:
 
       - uses: actions/checkout@v4
         with:
-          repository: utkuokur/lean-challenges-submissions
+          repository: utkuokur/ten-challenges-submissions
           ref: main
           path: submissions
           persist-credentials: false

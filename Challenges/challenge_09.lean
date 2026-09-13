@@ -24,7 +24,7 @@ finite union-closed family has an element of density at least `1/2 - 1/(r + 2)`.
 The single named statement shared by the canonical theorem and the submission
 signature-shim. -/
 def statement_09 (r : ℕ) : Prop :=
-  ∀ {U : Type*} [DecidableEq U] {F : Finset (Finset U)},
+  ∀ {U : Type*} [DecidableEq U] (F : Finset (Finset U)),
     IsUnionClosed F → Nondegenerate F →
       ∃ x, density F x ≥ (1 / 2 : ℚ) - 1 / ((r : ℚ) + 2)
 

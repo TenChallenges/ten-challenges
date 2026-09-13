@@ -29,47 +29,40 @@ variable {V : Type*} [DecidableEq V] (H : Hypergraph V)
 
 namespace Hypergraph
 
-/- An `r`-uniform hypergraph has every edge of cardinality `r`. -/
+/-- An `r`-uniform hypergraph has every edge of cardinality `r`. -/
 def IsUniform (r : ℕ) : Prop :=
-  ∀ {e : Finset V}, e ∈ H.edges -> e.card = r
+  ∀ e ∈ H.edges, e.card = r
 
-/-
-An `r`-partite hypergraph has its vertices partitioned into `r` parts, and
-every edge meets every part in exactly one vertex.
--/
+/-- An `r`-partite hypergraph has its vertices partitioned into `r` parts, and
+every edge meets every part in exactly one vertex. -/
 def IsPartite (r : ℕ) : Prop :=
-  exists parts : Fin r -> Finset V,
-    (∀ v : V, v ∈ H.vertices <-> exists i : Fin r, v ∈ parts i) ∧
-      (∀ i j : Fin r, i ≠ j -> Disjoint (parts i) (parts j)) ∧
-        (∀ {e : Finset V}, e ∈ H.edges ->
-          ∀ i : Fin r, ((parts i) ∩ e).card = 1)
+  ∃ parts : Fin r → Finset V,
+    (∀ v : V, v ∈ H.vertices ↔ ∃ i : Fin r, v ∈ parts i) ∧
+      (∀ i j : Fin r, i ≠ j → Disjoint (parts i) (parts j)) ∧
+        (∀ e ∈ H.edges, ∀ i : Fin r, (parts i ∩ e).card = 1)
 
-/- A vertex cover is a set of vertices meeting every edge. -/
+/-- A vertex cover is a set of vertices meeting every edge. -/
 def IsVertexCover (C : Finset V) : Prop :=
-  C ⊆ H.vertices ∧
-    ∀ {e : Finset V}, e ∈ H.edges -> exists v : V, v ∈ C ∧ v ∈ e
+  C ⊆ H.vertices ∧ ∀ e ∈ H.edges, ∃ v ∈ C, v ∈ e
 
-/- A matching is a finite set of pairwise disjoint edges. -/
+/-- A matching is a finite set of pairwise disjoint edges. -/
 def IsMatching (M : Finset (Finset V)) : Prop :=
-  (∀ {e : Finset V}, e ∈ M -> e ∈ H.edges) ∧
-    ∀ {e1 : Finset V}, e1 ∈ M ->
-      ∀ {e2 : Finset V}, e2 ∈ M -> e1 ≠ e2 -> Disjoint e1 e2
+  (∀ e ∈ M, e ∈ H.edges) ∧
+    ∀ e₁ ∈ M, ∀ e₂ ∈ M, e₁ ≠ e₂ → Disjoint e₁ e₂
 
-/- The cover number `τ(H)`: the least cardinality of a vertex cover, as an
+/-- The cover number `τ(H)`: the least cardinality of a vertex cover, as an
 `sInf` over the achievable cover cardinalities (`0` if no cover exists). -/
 noncomputable def coverNumber : ℕ :=
-  sInf {n | exists C : Finset V, H.IsVertexCover C ∧ C.card = n}
+  sInf {n | ∃ C : Finset V, H.IsVertexCover C ∧ C.card = n}
 
-/- The matching number `ν(H)`: the largest size of a matching, as an `sSup`
+/-- The matching number `ν(H)`: the largest size of a matching, as an `sSup`
 over the achievable matching sizes. -/
 noncomputable def matchingNumber : ℕ :=
-  sSup {n | exists M : Finset (Finset V), H.IsMatching M ∧ M.card = n}
+  sSup {n | ∃ M : Finset (Finset V), H.IsMatching M ∧ M.card = n}
 
-/- Ryser's hypergraph conjecture for a fixed value of `r`. -/
+/-- Ryser's hypergraph conjecture for a fixed value of `r`. -/
 def RyserConjectureFor (r : ℕ) : Prop :=
-  H.IsUniform r ->
-    H.IsPartite r ->
-      H.coverNumber <= (r - 1) * H.matchingNumber
+  H.IsUniform r → H.IsPartite r → H.coverNumber ≤ (r - 1) * H.matchingNumber
 
 end Hypergraph
 

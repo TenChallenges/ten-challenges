@@ -1,20 +1,16 @@
 import Mathlib.SetTheory.Ordinal.Arithmetic
 import Defs_and_Lems.Minor
 
-/-!
-# α-well-quasi-ordering (Nash–Williams hierarchy) and the minor order
--/
-
 open SimpleGraph Ordinal
 
 universe u
 
-/- A quasi-order is well-quasi-ordered when every infinite sequence
+/-- A quasi-order is well-quasi-ordered when every infinite sequence
 contains an increasing pair. -/
 def IsWQO {Q : Type u} (le : Q → Q → Prop) : Prop :=
   ∀ f : ℕ → Q, ∃ i j : ℕ, i < j ∧ le (f i) (f j)
 
-/- Level `o` of the cumulative hierarchy over `Q`: `VStar Q 0 = Q`,
+/-- Level `o` of the cumulative hierarchy over `Q`: `VStar Q 0 = Q`,
 `VStar Q (succ o)` is the nonempty subsets of `VStar Q o`, and at a limit
 `o` it is the disjoint union of all lower levels. -/
 noncomputable def VStar (Q : Type u) (o : Ordinal.{u}) : Type u :=
@@ -24,18 +20,21 @@ noncomputable def VStar (Q : Type u) (o : Ordinal.{u}) : Type u :=
     (fun o _ ih => Σ i : o.ToType, ih (Ordinal.typein (α := o.ToType) (· < ·) i)
       (Ordinal.typein_lt_self i))
 
+/-- Level zero is the base quasi-order. -/
 theorem VStar_zero (Q : Type u) : VStar Q 0 = Q :=
   Ordinal.limitRecOn_zero ..
 
+/-- Successor levels consist of nonempty subsets of the preceding level. -/
 theorem VStar_succ (Q : Type u) (o : Ordinal.{u}) :
     VStar Q (Order.succ o) = {S : Set (VStar Q o) // S.Nonempty} :=
   Ordinal.limitRecOn_add_one ..
 
+/-- Limit levels are disjoint unions of the preceding levels. -/
 theorem VStar_limit (Q : Type u) {o : Ordinal.{u}} (h : Order.IsSuccLimit o) :
     VStar Q o = Σ i : o.ToType, VStar Q (Ordinal.typein (α := o.ToType) (· < ·) i) :=
   Ordinal.limitRecOn_limit _ _ _ _ h
 
-/- The Nash–Williams game relation `≤*`, as a *heterogeneous* relation
+/-- The Nash–Williams game relation `≤*`, as a *heterogeneous* relation
 comparing an element of level `a` with an element of level `b`.
 
 A limit-level element is identified with its underlying lower-level element
@@ -61,7 +60,7 @@ noncomputable def leStar {Q : Type u} (le : Q → Q → Prop) (a : Ordinal.{u}) 
       (fun β hb ibh Y =>
         let Y' := cast (VStar_limit Q hb) Y
         ibh (Ordinal.typein (α := β.ToType) (· < ·) Y'.1) (Ordinal.typein_lt_self _) Y'.2))
-    -- a limit : X is a disjoint-union tag; unwrap to its underlying element.
+    -- a limit : X is a disjoint-union
     (fun a ha iha X =>
       let X' := cast (VStar_limit Q ha) X
       iha (Ordinal.typein (α := a.ToType) (· < ·) X'.1) (Ordinal.typein_lt_self _) X'.2)
@@ -77,6 +76,7 @@ isomorphism, so nothing is lost; the payoff is that `FiniteGraph : Type`, which 
 the ordinal parameter of the challenge in universe `0`. -/
 def FiniteGraph : Type := Σ n : ℕ, SimpleGraph (Fin n)
 
+/-- The minor order on finite graphs. -/
 def FiniteGraph.MinorLE (G H : FiniteGraph) : Prop :=
   Nonempty (Minor G.2 H.2)
 

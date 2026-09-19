@@ -1,22 +1,10 @@
-import Mathlib.Combinatorics.SimpleGraph.Basic
 import Mathlib.Combinatorics.SimpleGraph.Bipartite
-import Mathlib.Combinatorics.SimpleGraph.Maps
 import Mathlib.Data.Real.Basic
-import Mathlib.Data.Set.Card
-import Mathlib.SetTheory.Cardinal.Finite
-
-/-!
-# Shared definitions for Sidorenko's conjecture
-
-Used by both `challenge_04` (specific `r`) and `challenge_04_univ` (∀r):
-homomorphism density, the Sidorenko inequality, and the bounded-side
-bipartiteness predicate live here.
--/
 
 open SimpleGraph
 
-/-- The homomorphism density `t(H, G)`: the number of graph homomorphisms
-`H → G` (adjacency-preserving maps), divided by `|V(G)| ^ |V(H)|`. -/
+/-- The homomorphism density `t(H, G)`: the number of
+graph homomorphisms `H → G`, divided by `|V(G)| ^ |V(H)|`. -/
 noncomputable def homDensity {W V : Type*} [Fintype W] [Fintype V]
     (H : SimpleGraph W) (G : SimpleGraph V) : ℝ :=
   (Nat.card {f : W → V // ∀ ⦃a b : W⦄, H.Adj a b → G.Adj (f a) (f b)} : ℝ) /

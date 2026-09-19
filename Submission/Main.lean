@@ -1,5 +1,5 @@
 /-
-  Your submission goes here.
+  Submission goes here.
 
   1. Open the challenge file for the problem you picked — e.g.
      `Challenges/challenge_01.lean`. It holds the exact `r` and

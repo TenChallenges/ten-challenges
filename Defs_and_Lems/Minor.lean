@@ -1,9 +1,13 @@
 import Mathlib.Data.Set.Card
 import Mathlib.Combinatorics.SimpleGraph.Walk.Basic
 
+variable {V W : Type*}
+
 namespace SimpleGraph
 
-variable {V : Type*} (G : SimpleGraph V) (s : Set V)
+section Connectivity
+
+variable (G : SimpleGraph V) (s : Set V)
 
 /-- Two vertices `u` and `v` are reachable in a graph `G` on `s`
 if there exists a walk from `u` to
@@ -21,13 +25,7 @@ def ConnectedOn : Prop := s.Nonempty ∧ G.PreconnectedOn s
 def IsVertexConnected (k : ℕ) (G : SimpleGraph V) : Prop :=
   k < ENat.card V ∧ ∀ ⦃s : Set V⦄, s.encard < k → G.ConnectedOn sᶜ
 
-end SimpleGraph
-
-open SimpleGraph
-
-variable {V W : Type*}
-
-namespace SimpleGraph
+end Connectivity
 
 /-- The data witnessing that `H` is a minor of `G`, as simple graphs. -/
 structure Minor (H : SimpleGraph W) (G : SimpleGraph V) where
@@ -46,6 +44,8 @@ structure Minor (H : SimpleGraph W) (G : SimpleGraph V) where
     H.Adj w₁ w₂ → ∃ v₁ ∈ branchSet w₁, ∃ v₂ ∈ branchSet w₂, G.Adj v₁ v₂
 
 end SimpleGraph
+
+open SimpleGraph
 
 /-- K₅ -/
 abbrev K5 := completeGraph (Fin 5)

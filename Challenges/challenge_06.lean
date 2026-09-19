@@ -9,6 +9,6 @@ def statement_06 (r : Ordinal) : Prop :=
   else IsAlphaWQO FiniteGraph.MinorLE (r / 2)
 
 /-- The challenge parameter. -/
-def r : Ordinal.{0} := sorry
+def r : Ordinal := sorry
 
 theorem challenge_6 : statement_06 r := sorry

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { problems, type Problem } from "@/data/problems";
 
-const SUBMISSIONS_REPO = "utkuokur/lean-challenges-submissions";
+const SUBMISSIONS_REPO = "utkuokur/ten-challenges-submissions";
+const LEAN_VERSION = import.meta.env.VITE_LEAN_VERSION;
+const MATHLIB_REVISION = import.meta.env.VITE_MATHLIB_REVISION;
 
 /** Public raw URL of the leaderboard JSON maintained by the submissions repo CI. */
 const LEADERBOARD_URL =
-  "https://raw.githubusercontent.com/utkuokur/lean-challenges-submissions/main/site-data/leaderboard.json";
+  `https://raw.githubusercontent.com/${SUBMISSIONS_REPO}/main/site-data/leaderboard.json`;
 
 interface LeaderboardEntry {
   rank: number;
@@ -158,6 +160,19 @@ function App() {
           <p style={{ fontSize: 16, color: "#333", maxWidth: 640 }}>
             A collection of formal mathematics challenges. Select a problem, prove or disprove your bounds, and submit your solution.
           </p>
+          <p style={{ fontSize: 14, color: "#555", marginTop: 12 }}>
+            Submission environment:{" "}
+            <a href={`https://github.com/leanprover/lean4/releases/tag/${LEAN_VERSION}`}>
+              Lean {LEAN_VERSION.replace(/^v/, "")}
+            </a>
+            {" · "}
+            <a
+              href={`https://github.com/leanprover-community/mathlib4/commit/${MATHLIB_REVISION}`}
+              title={MATHLIB_REVISION}
+            >
+              Mathlib <code>{MATHLIB_REVISION.slice(0, 12)}</code>
+            </a>
+          </p>
         </section>
 
         {/* Problems */}
@@ -309,11 +324,11 @@ function App() {
                 Push to your own GitHub repository. It can be public, or{" "}
                 <strong>private</strong> — a private repo needs the{" "}
                 <a
-                  href="https://github.com/apps/lean-challenge-bot"
+                  href="https://github.com/apps/ten-challenges-bot"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <code>lean-challenge-bot</code>
+                  <code>ten-challenges-bot</code>
                 </a>{" "}
                 GitHub App so the CI can clone it. To install: open that page, click{" "}
                 <strong>Install</strong>, choose your account, select{" "}
@@ -326,6 +341,15 @@ function App() {
                 a pre-filled GitHub issue, asking for the <strong>Repository URL</strong> of your proof.
               </li>
             </ol>
+            <p style={{ marginTop: 16 }}>
+              To keep proofs usable as Lean and its libraries evolve, the submission form asks
+              for permission to maintain compatible copies of your code. Your authorship,
+              mathematical claim, and public or private status will be preserved.{" "}
+              <a href={`https://github.com/${SUBMISSIONS_REPO}/blob/main/docs/maintenance-policy.md`}>
+                Maintenance policy
+              </a>
+              .
+            </p>
           </div>
 
           {/* Option 1: Prove special case (specific r) */}

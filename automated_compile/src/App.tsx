@@ -155,13 +155,9 @@ function App() {
         {/* Intro */}
         <section className="intro">
           <h1 style={{ fontSize: 28, fontWeight: "normal", fontStyle: "italic", marginBottom: 16, lineHeight: 1.3 }}>
-            Parametrized Problems in Lean 4
+            Ten Challenges
           </h1>
-          <p style={{ fontSize: 16, color: "#333", maxWidth: 640 }}>
-            A collection of formal mathematics challenges. Select a problem, prove or disprove your bounds, and submit your solution.
-          </p>
           <p style={{ fontSize: 14, color: "#555", marginTop: 12 }}>
-            Submission environment:{" "}
             <a href={`https://github.com/leanprover/lean4/releases/tag/${LEAN_VERSION}`}>
               Lean {LEAN_VERSION.replace(/^v/, "")}
             </a>
@@ -472,7 +468,7 @@ function App() {
                   onChange={(e) => setUnivProblem(e.target.value)}
                 >
                   <option value="">Select a problem...</option>
-                  {problems.map((p, i) => (
+                  {problems.map((p, i) => p.id !== "challenge_2" && (
                     <option key={p.id} value={p.id}>{`${i + 1}. ${p.title}`}</option>
                   ))}
                 </select>
@@ -519,7 +515,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <span>Parametrized Problems in Lean 4</span>
+        <span>Ten Challenges</span>
         <span>Built for the formal mathematics community</span>
       </footer>
     </>

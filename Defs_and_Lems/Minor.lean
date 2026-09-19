@@ -1,17 +1,13 @@
 import Mathlib.Data.Set.Card
 import Mathlib.Combinatorics.SimpleGraph.Walk.Basic
 
-variable {V W : Type*}
-
 namespace SimpleGraph
 
-section Connectivity
-
-variable (G : SimpleGraph V) (s : Set V)
+variable {V W : Type*} (G : SimpleGraph V) (s : Set V)
 
 /-- Two vertices `u` and `v` are reachable in a graph `G` on `s`
-if there exists a walk from `u` to
-`v` in `G` whose vertices all lie within `s`. -/
+if there exists a walk from `u` to `v` in `G`
+whose vertices all lie within `s`. -/
 def ReachableOn (u v : V) : Prop := ∃ w : G.Walk u v, ∀ ⦃x⦄, x ∈ w.support → x ∈ s
 
 /-- Any two vertices of `s` are joined by a walk within `s`. -/
@@ -24,8 +20,6 @@ def ConnectedOn : Prop := s.Nonempty ∧ G.PreconnectedOn s
 /-- More than `k` vertices, remaining connected after deleting fewer than `k`. -/
 def IsVertexConnected (k : ℕ) (G : SimpleGraph V) : Prop :=
   k < ENat.card V ∧ ∀ ⦃s : Set V⦄, s.encard < k → G.ConnectedOn sᶜ
-
-end Connectivity
 
 /-- The data witnessing that `H` is a minor of `G`, as simple graphs. -/
 structure Minor (H : SimpleGraph W) (G : SimpleGraph V) where
@@ -43,10 +37,6 @@ structure Minor (H : SimpleGraph W) (G : SimpleGraph V) where
   exists_mem_branchSet_of_adj ⦃w₁ w₂ : W⦄ :
     H.Adj w₁ w₂ → ∃ v₁ ∈ branchSet w₁, ∃ v₂ ∈ branchSet w₂, G.Adj v₁ v₂
 
-end SimpleGraph
-
-open SimpleGraph
-
 /-- K₅ -/
 abbrev K5 := completeGraph (Fin 5)
 
@@ -54,5 +44,7 @@ abbrev K5 := completeGraph (Fin 5)
 abbrev K33 := completeBipartiteGraph (Fin 3) (Fin 3)
 
 /-- Planarity via Wagner's criterion: no `K₅` or `K₃,₃` minor. -/
-def SimpleGraph.IsWagnerPlanar (G : SimpleGraph V) : Prop :=
+def IsWagnerPlanar (G : SimpleGraph V) : Prop :=
   ¬ Nonempty (Minor K5 G) ∧ ¬ Nonempty (Minor K33 G)
+
+end SimpleGraph

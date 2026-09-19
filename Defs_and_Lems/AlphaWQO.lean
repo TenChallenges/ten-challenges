@@ -70,10 +70,7 @@ noncomputable def leStar {Q : Type u} (le : Q → Q → Prop) (a : Ordinal.{u}) 
 def IsAlphaWQO {Q : Type u} (le : Q → Q → Prop) (a : Ordinal.{u}) : Prop :=
   IsWQO (fun X Y : VStar Q a => leStar le a X a Y)
 
-/-- A finite simple graph, given as a graph on `Fin n` for some `n`. Every finite
-graph is isomorphic to one of this form, and the minor relation is invariant under
-isomorphism, so nothing is lost; the payoff is that `FiniteGraph : Type`, which keeps
-the ordinal parameter of the challenge in universe `0`. -/
+/-- A finite simple graph, given as a graph on `Fin n` for some `n`. -/
 def FiniteGraph : Type := Σ n : ℕ, SimpleGraph (Fin n)
 
 /-- The minor order on finite graphs. -/

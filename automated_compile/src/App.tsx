@@ -157,6 +157,9 @@ function App() {
           <h1 style={{ fontSize: 28, fontWeight: "normal", fontStyle: "italic", marginBottom: 16, lineHeight: 1.3 }}>
             Ten Challenges
           </h1>
+          <p style={{ fontSize: 16, color: "#333", maxWidth: 640 }}>
+            Parameterized open problems in combinatorics, formalized in Lean 4.
+          </p>
           <p style={{ fontSize: 14, color: "#555", marginTop: 12 }}>
             <a href={`https://github.com/leanprover/lean4/releases/tag/${LEAN_VERSION}`}>
               Lean {LEAN_VERSION.replace(/^v/, "")}

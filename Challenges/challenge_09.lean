@@ -1,7 +1,7 @@
 import Defs_and_Lems.UnionClosed
 
-/-- Every nondegenerate finite union-closed family has an element of density
-at least `1/2 - 1/(r + 2)`. -/
+/-- Every nondegenerate finite union-closed family
+has an element of density at least `1/2 - 1/(r + 2)`. -/
 def statement_09 (r : ℕ) : Prop :=
   ∀ {U : Type*} [DecidableEq U] (F : Finset (Finset U)),
     IsUnionClosed F → Nondegenerate F →

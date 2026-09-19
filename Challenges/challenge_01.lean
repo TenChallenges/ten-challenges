@@ -1,4 +1,4 @@
-import Defs_and_Lems.Hadwiger
+import Defs_and_Lems.Minor
 
 open SimpleGraph
 

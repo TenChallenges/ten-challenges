@@ -6,8 +6,8 @@ name: Shim drift check
 # workflow runs the drift checker from the submissions repo against the
 # pushed canon: each shim is rebuilt against a mock submission that
 # re-exports the canonical (sorry-backed) theorem, so a stale template
-# fails with a type error while an in-sync one fails only at the sorryAx
-# axiom gate.
+# fails with a type error while an in-sync one fails at the expected
+# placeholder gates (axioms, and Challenge 2 data).
 #
 # If this goes red after you edit a challenge statement, update the
 # matching CHECKS template(s) in ten-challenges-submissions

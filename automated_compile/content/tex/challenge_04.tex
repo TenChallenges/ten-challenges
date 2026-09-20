@@ -61,7 +61,7 @@
 \refstepcounter{section}
 
 \begin{definition}[Graph homomorphism density]
-Let $G$ and $H$ be simple graphs. 
+Let $G$ and $H$ be simple graphs, with $G$ nonempty.
 %\phantom{a}
 \begin{enumerate}
 \item A function $f: V\ev{H} \rightarrow V\ev{G}$ is a \textit{graph homomorphism} from $H$ to $G$ if for each edge $uv \in E\ev{H}$, we have $f\ev{u}f\ev{v} \in E\ev{G}$. 
@@ -76,7 +76,7 @@ $$
 \end{definition}
 
 \begin{conjecture}[Sidorenko's Conjecture \mbox{\cite{sidorenko}}]
-For every bipartite graph $H$ and for any graph $G$, we have:
+For every bipartite graph $H$ and for any nonempty graph $G$, we have:
 $$
 t_H\ev{G} \geq t_{K_2}\ev{G}^{|E\ev{H}|}
 $$
@@ -84,7 +84,7 @@ $$
 
 We are interested in the special case of the conjecture where $H$ is a bipartite graph in which each side has at most $r$ vertices.
 \begin{openproblem}[Scaled Sidorenko's Conjecture]
-Let $r \in \N$. For every bipartite graph $H$ that admits a bipartition $V\ev{H} = X \cup Y$ with $|X| \leq r$ and $|Y| \leq r$ and for any graph $G$, we have:
+Let $r \in \N$. For every bipartite graph $H$ that admits a bipartition $V\ev{H} = X \cup Y$ with $|X| \leq r$ and $|Y| \leq r$ and for any nonempty graph $G$, we have:
 $$
 t_H\ev{G} \geq t_{K_2}\ev{G}^{|E\ev{H}|}
 $$

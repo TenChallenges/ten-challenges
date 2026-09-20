@@ -1,13 +1,8 @@
-import Mathlib.Data.Set.Card
 import Mathlib.Combinatorics.SimpleGraph.Coloring.Vertex
 
 namespace SimpleGraph
 
 variable {V W : Type*}
-
-/-- More than `k` vertices, remaining connected after deleting fewer than `k`. -/
-def IsVertexConnected (k : ℕ) (G : SimpleGraph V) : Prop :=
-  k < ENat.card V ∧ ∀ ⦃s : Set V⦄, s.encard < k → (G.induce sᶜ).Connected
 
 /-- The data witnessing that `H` is a minor of `G`, as simple graphs. -/
 structure Minor (H : SimpleGraph W) (G : SimpleGraph V) where

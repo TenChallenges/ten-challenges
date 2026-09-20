@@ -1,73 +1,37 @@
-# React + TypeScript + Vite
+# Ten Challenges website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This directory contains the static React website deployed to GitHub Pages.
+Submission forms open GitHub issues in `utkuokur/ten-challenges-submissions`;
+the leaderboard is fetched from that repository's `site-data/leaderboard.json`.
+Submission evaluation and archiving run in that repository, not in this website.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Use Node.js 20.19 or later, matching the Vite requirement.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Before deploying:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+npm run check
+npm run lint
+npm run build
+npm run preview
 ```
+
+The build writes `dist/public`. Preview serves the site under `/ten-challenges/`,
+matching GitHub Pages. Lean and Mathlib versions are read at build time from the
+parent project's `lean-toolchain` and `lake-manifest.json`.
+
+## Challenge descriptions
+
+Edit `content/tex/challenge_*.tex`, then run `npm run build:html` to regenerate
+`public/content/html`. This requires LaTeXML and Python 3. The Pages workflow
+also regenerates these pages before building the site. The PDFs in
+`public/content/pdf` are separately maintained downloadable copies.
+
+Pushing website changes to `main` triggers `.github/workflows/deploy-pages.yml`.

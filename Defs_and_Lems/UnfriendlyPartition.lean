@@ -1,10 +1,6 @@
 import Mathlib.SetTheory.Ordinal.Basic
 import Mathlib.Combinatorics.SimpleGraph.Basic
 
-/-!
-# Shared definitions for the Unfriendly Partition Conjecture
--/
-
 universe u v
 
 open scoped Cardinal

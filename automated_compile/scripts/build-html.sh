@@ -3,8 +3,8 @@
 # public/content/html/, the same way arXiv renders LaTeX to HTML (via LaTeXML).
 #
 # The .tex sources are the source of truth and are left untouched. The generated
-# HTML is committed (like the PDFs), so the GitHub Pages deploy (plain `vite
-# build`) needs no LaTeX toolchain -- only this regeneration step does.
+# HTML is committed (like the PDFs), so local Vite builds need no LaTeX
+# toolchain. The GitHub Pages workflow regenerates it before building the site.
 #
 # Requirements: LaTeXML (e.g. `sudo apt-get install latexml`).
 # Usage:        scripts/build-html.sh        # from anywhere

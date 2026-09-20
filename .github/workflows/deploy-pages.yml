@@ -51,9 +51,9 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends latexml
       - run: npm run build:html
 
-      # Build only the static site (Vite). The backend is not deployed —
-      # the leaderboard is read client-side from the submissions repo JSON.
-      - run: npx vite build
+      - run: npm run check
+      - run: npm run lint
+      - run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:

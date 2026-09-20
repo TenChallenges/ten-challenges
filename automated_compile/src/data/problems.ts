@@ -27,7 +27,7 @@ export const problems: Problem[] = [
   },
   {
     id: "challenge_5",
-    title: "Erdős–Hajnal Conjecture",
+    title: "Erdős–Hajnal Conjecture for paths",
     htmlPath: "content/html/challenge_05.html",
   },
   {

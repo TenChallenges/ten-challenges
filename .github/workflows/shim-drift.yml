@@ -63,3 +63,6 @@ jobs:
 
       - name: Smoke-test accepted and rejected submissions
         run: python3 submissions/tests/integration_submission_smoke.py --project .
+
+      - name: Check standard ordinal normalization
+        run: python3 submissions/tests/integration_ordinal_parameters.py --project .

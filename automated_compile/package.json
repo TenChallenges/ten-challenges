@@ -10,6 +10,8 @@
     "build:html": "bash scripts/build-html.sh",
     "preview": "vite preview",
     "check": "tsc -b",
+    "test:ordinals": "node --test tests/ordinals.test.mjs",
+    "test:leaderboard": "node --test tests/leaderboard.test.mjs",
     "format": "prettier --write ."
   },
   "dependencies": {

@@ -53,6 +53,8 @@ jobs:
 
       - run: npm run check
       - run: npm run lint
+      - run: npm run test:ordinals
+      - run: npm run test:leaderboard
       - run: npm run build
 
       - uses: actions/upload-pages-artifact@v3

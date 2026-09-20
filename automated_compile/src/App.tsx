@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { problems, type Problem } from "@/data/problems";
+import { ordinalSummary } from "@/ordinals";
+import { leaderboardRows } from "@/leaderboard";
 
 const SUBMISSIONS_REPO = "utkuokur/ten-challenges-submissions";
 const LEAN_VERSION = import.meta.env.VITE_LEAN_VERSION;
@@ -16,6 +18,8 @@ interface LeaderboardEntry {
   problem: string;
   claim: string;
   parameter: string;
+  /** Present only for the usual ordinal notation normalized by the checker. */
+  ordinal_cnf?: unknown;
   date?: string;
   /** Public link to the proof. Empty/absent for private submissions. */
   source_url?: string;
@@ -86,41 +90,50 @@ function App() {
     setOpenProblemId((prev) => (prev === id ? null : id));
   };
 
-  // Leaderboard data processing — entries already come ranked from leaderboard.json
-  const lbEntries = submissions
-    .filter((s) => activeLbTab === "all" || s.problem === activeLbTab)
+  // Challenge tabs rank larger recognized parameters first. The overall
+  // list keeps recording order; unsupported ordinals remain unranked.
+  const lbEntries = leaderboardRows(submissions, activeLbTab)
     .map((s) => ({
-      rank: s.rank,
+      rank: s.displayRank,
+      recordRank: s.rank,
       nickname: s.nickname,
       name: s.name || "",
       problem: s.problem,
-      result: `${s.claim === "prove" ? "holds" : "fails"} for r = ${s.parameter}`,
+      result: s.parameter === "universal"
+        ? (s.claim === "prove" ? "proven universally" : "fails for some r")
+        : `${s.claim === "prove" ? "holds" : "fails"} for r = ${s.parameter}`,
       date: s.date || "",
       sourceUrl: s.source_url || "",
       // Missing submission_public (older entries) is treated as public.
       isPublic: s.submission_public !== false,
     }));
 
-  // "Largest r so far" per problem: purely leaderboard-driven, no baseline.
-  // The largest r among specific-r "prove" entries, or "N/A" when nobody has
-  // proven any r (note: a proof at r = 0 still shows "r = 0", not "N/A"). A
-  // universal "prove" entry (problem id `<id>_univ`) settles every r, so it
-  // shows as "all r".
-  const largestProvenR = (problem: Problem): string => {
+  // Compare natural numbers and checked ordinal normal forms exactly. If any
+  // ordinal is outside the supported notation, list the proved values instead.
+  const parameterSummary = (problem: Problem): string => {
+    const ordinal = problem.id === "challenge_6" || problem.id === "challenge_10";
+    const label = ordinal ? "proved r" : "largest r so far";
     if (
       submissions.some(
         (s) => s.problem === `${problem.id}_univ` && s.claim === "prove"
       )
     ) {
-      return "all r";
+      return `${label}: all r`;
     }
-    let best: number | null = null;
+    if (ordinal) {
+      return ordinalSummary(submissions.filter(
+        (s) => s.problem === problem.id && s.claim === "prove"
+      ));
+    }
+    let best: bigint | null = null;
     for (const s of submissions) {
       if (s.problem !== problem.id || s.claim !== "prove") continue;
-      const r = Number(s.parameter);
-      if (!Number.isNaN(r) && (best === null || r > best)) best = r;
+      const parameter = s.parameter.trim();
+      if (!/^\d+$/.test(parameter)) continue;
+      const r = BigInt(parameter);
+      if (best === null || r > best) best = r;
     }
-    return best === null ? "N/A" : `r = ${best}`;
+    return `${label}: ${best === null ? "N/A" : `r = ${best}`}`;
   };
 
   const specificGitHubUrl = buildSpecificUrl({
@@ -190,7 +203,7 @@ function App() {
                   <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
                     <span style={{ fontSize: 16, fontWeight: "bold" }}>{p.title}</span>
                     <span style={{ fontSize: 13, color: "#555", fontFamily: '"Courier New", Courier, monospace' }}>
-                      largest r so far: {largestProvenR(p)}
+                      {parameterSummary(p)}
                     </span>
                   </div>
                 </div>
@@ -233,6 +246,11 @@ function App() {
               </button>
             ))}
           </div>
+          {lbEntries.some(row => row.rank === null) && (
+            <p style={{ fontSize: 13, color: "#555" }}>
+              Entries marked “—” await ordinal comparison and are not ranked.
+            </p>
+          )}
           <table className="data-table">
             <thead>
               <tr>
@@ -254,8 +272,8 @@ function App() {
                 </tr>
               ) : (
                 lbEntries.map((row) => (
-                  <tr key={row.rank + row.nickname + row.problem}>
-                    <td>{row.rank}</td>
+                  <tr key={row.recordRank + row.nickname + row.problem}>
+                    <td>{row.rank ?? "—"}</td>
                     <td>{row.nickname}</td>
                     <td style={{ color: row.name ? "#000" : "#888" }}>
                       {row.name || "—"}

@@ -34,19 +34,11 @@ export function readOrdinalCNF(value: unknown): OrdinalCNF | null {
   return read(value, 0);
 }
 
-export function ordinalSummary(entries: { parameter: string; ordinal_cnf?: unknown }[]): string {
-  if (entries.length === 0) return "proved r: N/A";
-  let best: { parameter: string; value: OrdinalCNF } | null = null;
+/** Stored ranks increase with recording order, independently of display sorting. */
+export function ordinalSummary(entries: { rank: number; parameter: string }[]): string {
+  let latest: { rank: number; parameter: string } | null = null;
   for (const entry of entries) {
-    const value = readOrdinalCNF(entry.ordinal_cnf);
-    if (value === null) {
-      // One unrecognized ordinal is enough to make a claimed maximum unsafe.
-      const parameters = [...new Set(entries.map(e => e.parameter.trim()).filter(Boolean))];
-      return `proved r: ${parameters.join(", ") || "N/A"}`;
-    }
-    if (best === null || compareOrdinals(value, best.value) > 0) {
-      best = { parameter: entry.parameter, value };
-    }
+    if (latest === null || entry.rank > latest.rank) latest = entry;
   }
-  return `largest r so far: r = ${best!.parameter}`;
+  return `latest r: ${latest === null ? "N/A" : `r = ${latest.parameter}`}`;
 }

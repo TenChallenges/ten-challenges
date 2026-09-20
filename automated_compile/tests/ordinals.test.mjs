@@ -35,30 +35,33 @@ test("finite coefficients retain precision beyond JavaScript Number", () => {
   assert.equal(compareOrdinals(a, b), -1);
 });
 
-test("the maximum is mathematical, independent of submission order", () => {
+test("summary shows the latest recorded ordinal, even when it is smaller", () => {
   const entries = [
-    { parameter: "ω^(2)", ordinal_cnf: square },
-    { parameter: "ω*2", ordinal_cnf: twice },
-    { parameter: "ω", ordinal_cnf: omega },
+    { rank: 1, parameter: "ω^(2)", ordinal_cnf: square },
+    { rank: 3, parameter: "ω*2", ordinal_cnf: twice },
+    { rank: 8, parameter: "ω", ordinal_cnf: omega },
   ];
-  assert.equal(ordinalSummary(entries), "largest r so far: r = ω^(2)");
-  assert.equal(ordinalSummary([...entries].reverse()), "largest r so far: r = ω^(2)");
-  assert.equal(ordinalSummary([{ parameter: "0", ordinal_cnf: [] }]), "largest r so far: r = 0");
-  assert.equal(ordinalSummary([]), "proved r: N/A");
+  assert.equal(ordinalSummary(entries), "latest r: r = ω");
+  assert.equal(ordinalSummary([...entries].reverse()), "latest r: r = ω");
+  assert.equal(ordinalSummary([{ rank: 1, parameter: "0", ordinal_cnf: [] }]), "latest r: r = 0");
+  assert.equal(ordinalSummary([]), "latest r: N/A");
 });
 
-test("one unsupported or legacy ordinal prevents claiming a maximum", () => {
-  assert.equal(ordinalSummary([
-    { parameter: "ω*2", ordinal_cnf: twice },
-    { parameter: "Ordinal.omega 1" },
-  ]), "proved r: ω*2, Ordinal.omega 1");
+test("summary uses recording order for both supported and unsupported ordinals", () => {
+  const entries = [
+    { rank: 1, parameter: "ω*2", ordinal_cnf: twice },
+    { rank: 2, parameter: "Ordinal.omega 1" },
+  ];
+  assert.equal(ordinalSummary(entries), "latest r: r = Ordinal.omega 1");
+  assert.equal(ordinalSummary([...entries, { rank: 3, parameter: "ω", ordinal_cnf: omega }]),
+    "latest r: r = ω");
 });
 
 test("malformed or non-normal keys fall back instead of inventing an order", () => {
   for (const value of [null, {}, [[[], "0"]], [[[], 1]], [[[], "01"]],
     [[[], "-1"]], [[[], "١"]], [[[], "2"], [one, "1"]], [[one, "1"], [one, "2"]]]) {
     assert.equal(readOrdinalCNF(value), null);
-    assert.equal(ordinalSummary([{ parameter: "unrecognized", ordinal_cnf: value }]),
-      "proved r: unrecognized");
+    assert.equal(ordinalSummary([{ rank: 1, parameter: "unrecognized", ordinal_cnf: value }]),
+      "latest r: r = unrecognized");
   }
 });

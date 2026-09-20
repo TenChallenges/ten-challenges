@@ -108,11 +108,10 @@ function App() {
       isPublic: s.submission_public !== false,
     }));
 
-  // Compare natural numbers and checked ordinal normal forms exactly. If any
-  // ordinal is outside the supported notation, list the proved values instead.
+  // Show the largest natural parameter or the latest recorded ordinal parameter.
   const parameterSummary = (problem: Problem): string => {
     const ordinal = problem.id === "challenge_6" || problem.id === "challenge_10";
-    const label = ordinal ? "proved r" : "largest r so far";
+    const label = ordinal ? "latest r" : "largest r so far";
     if (
       submissions.some(
         (s) => s.problem === `${problem.id}_univ` && s.claim === "prove"
@@ -313,7 +312,7 @@ function App() {
 
         {/* Submit */}
         <section id="submit">
-          <h2 className="section-heading">Submit Your Solution</h2>
+          <h2 className="section-heading">Submission</h2>
           <div style={{ fontSize: 15, color: "#333", marginBottom: 24, maxWidth: 720, lineHeight: 1.7 }}>
             <p style={{ marginBottom: 12 }}>
               Your Lean 4 proof must compile without errors and without any <code>sorry</code>.
@@ -353,7 +352,7 @@ function App() {
                 check it under your repo’s <strong>Settings → GitHub Apps</strong>.)
               </li>
               <li style={{ marginBottom: 12 }}>
-                Pick the option below that matches your proof and fill in the submission form — it opens
+                Pick the option below that matches your proof and fill in the submission form. It opens
                 a pre-filled GitHub issue, asking for the <strong>Repository URL</strong> of your proof.
               </li>
             </ol>

@@ -6,16 +6,16 @@ open scoped ENNReal
 
 noncomputable section
 
-variable {d : ℕ}
+variable {d : ℕ} (C : Set (EuclideanSpace ℝ (Fin d)))
 
 /-- A set of centres `C ⊆ ℝ^d` is a *unit packing* if distinct centres are at
 distance at least `2` (the open unit balls around the centres are disjoint). -/
-def IsUnitPacking (C : Set (EuclideanSpace ℝ (Fin d))) : Prop :=
+def IsUnitPacking : Prop :=
   ∀ ⦃x⦄, x ∈ C → ∀ ⦃y⦄, y ∈ C → x ≠ y → 2 ≤ dist x y
 
 /-- The (upper) density of a packing `C`: the `limsup` as `R → ∞` of the fraction
 of the ball `B(0, R)` filled by the unit balls centred at the points of `C`. -/
-def upperDensity (C : Set (EuclideanSpace ℝ (Fin d))) : ℝ≥0∞ :=
+def upperDensity : ℝ≥0∞ :=
   limsup (fun R : ℝ =>
     volume ((⋃ x ∈ C, ball x 1) ∩ ball 0 R)
       / volume (ball (0 : EuclideanSpace ℝ (Fin d)) R)) atTop

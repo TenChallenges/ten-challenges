@@ -35,7 +35,7 @@ instance (D : FinMatroid) : Decidable (IsMatroidData D) := by
   unfold IsMatroidData; infer_instance
 
 /-- Decode valid independence data; use the empty matroid otherwise. -/
-noncomputable def decode (D : FinMatroid) : Matroid ℕ :=
+def decode (D : FinMatroid) : Matroid ℕ :=
   if h : IsMatroidData D then
     (IndepMatroid.ofFinset (↑D.ground) (fun I => I ∈ D.indep)
       h.1

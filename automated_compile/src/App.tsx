@@ -231,7 +231,6 @@ function App() {
                   >
                     &larr; back to list
                   </span>
-                  <h3>{p.title}</h3>
                   <iframe
                     src={`${import.meta.env.BASE_URL}${p.htmlPath}`}
                     style={{ width: "100%", height: "600px", border: "1px solid #ddd", borderRadius: "4px", marginBottom: "12px" }}

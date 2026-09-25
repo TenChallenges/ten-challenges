@@ -59,17 +59,17 @@
 \section*{Challenge 3: Caccetta--H\"aggkvist Conjecture}
 \refstepcounter{section}
 
-\begin{definition}[Digraph]
-A \emph{digraph} $D$ consists of a finite nonempty set $V(D)$ of vertices and a set $A(D)\subseteq V(D)\times V(D)$ of arcs with $(v,v)\notin A(D)$ for every vertex $v$. Thus $D$ has no loops and no multiple arcs, while arcs in both directions between two vertices are allowed. The \emph{out-degree} $d^+(v)$ of a vertex $v$ is the number of arcs $(v,w)\in A(D)$, and the \emph{minimum out-degree} of $D$ is the smallest out-degree of a vertex of $D$.
+\begin{definition}[Out-degree]
+Let $D$ be a simple digraph with vertex set $V(D)$ and edge set $E(D)$. The \emph{out-degree} $d^+(v)$ of a vertex $v$ is the number of edges $(v,w)\in E(D)$, and the \emph{minimum out-degree} of $D$ is the smallest out-degree of a vertex of $D$.
 \end{definition}
 
 \begin{definition}[Directed cycle]
-A \emph{directed cycle of length $\ell\geq 2$} in a digraph $D$ is a sequence $v_0,\dots,v_{\ell-1}$ of distinct vertices such that $(v_i,v_{i+1})\in A(D)$ for every $i$, where the indices are taken modulo $\ell$.
+A \emph{directed cycle of length $\ell\geq 2$} in a simple digraph $D$ is a sequence $v_0,\dots,v_{\ell-1}$ of distinct vertices such that $(v_i,v_{i+1})\in E(D)$ for every $i$, where the indices are taken modulo $\ell$.
 \end{definition}
 
 
 \begin{conjecture}[Caccetta--H\"aggkvist Conjecture \mbox{\cite{caccetta1978minimal}}]\label{conj:ch}
-Let $r\in \mathbb{N}$ with $r\geq 1$. Every digraph on $n$ vertices with minimum out-degree at least $r$ contains a directed cycle of length at most $\lceil n/r\rceil$.
+Let $r\in \mathbb{N}$ with $r\geq 1$. Every simple directed graph on $n$ vertices with minimum out-degree at least $r$ has a cycle of length at most $\lceil n/r\rceil$.
 \end{conjecture}
 For $r=1$ the statement is elementary. The conjecture was proved for $r=2$ by Caccetta and H\"aggkvist \cite{caccetta1978minimal}, for $r=3$ by Hamidoune \cite{hamidoune1987note}, and for $r=4$ and $r=5$ by Ho\`ang and Reed \cite{hoang1987note}. Shen proved it for every $r$ under the additional assumption $n\geq 2r^2-3r+1$ \cite{shen2000girth}. 
 %When $r$ is a constant fraction of $n$, the conjecture predicts that minimum out-degree at least $n/3$ forces a directed cycle of length at most $3$; it is known that minimum out-degree at least $(3-\sqrt{7})\,n\approx 0.354\,n$ suffices \cite{shen1998directed}. 

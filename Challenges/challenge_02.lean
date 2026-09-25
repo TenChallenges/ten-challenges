@@ -1,25 +1,14 @@
 import Defs_and_Lems.MatroidRepresentability
 
-open Matroid FinMatroid
-
-universe u
-
-/-- The statement below says `r = pᵐ` is a prime power and
-`L` lists the excluded minors for finite
-`GF(pᵐ)`-representability, up to isomorphism. -/
-def statement_02 (r : ℕ) (L : Finset FinMatroid) : Prop :=
-  ∃ m p, ∃ _ : Fact p.Prime,
-  0 < m ∧ r = p ^ m ∧
-  (∀ A ∈ L, IsMatroidData A) ∧
-  (∀ A ∈ L, IsExcludedMinorFor (IsGFRepresentable p m) A.decode) ∧
-  (∀ A ∈ L, ∀ B ∈ L, A ≠ B → IsEmpty (A.decode ≂ B.decode)) ∧
-  (∀ {β : Type u} (M : Matroid β), M.Finite →
-  ¬ IsGFRepresentable p m M → ∃ A ∈ L, Nonempty (A.decode ≤i M))
+/-- For every prime power `pᵐ ≤ r`, the excluded minors for
+`GF(pᵐ)`-representability number at most `B` up to isomorphism. -/
+def statement_02 (r B : ℕ) : Prop :=
+  ∀ (p m : ℕ) [Fact p.Prime], 0 < m → p ^ m ≤ r → ExcludedMinorsAtMost p m B
 
 /-- The challenge parameter. -/
 def r : ℕ := sorry
 
-/-- The excluded-minor list. -/
-def L : Finset FinMatroid := sorry
+/-- The bound on the number of excluded minors, up to isomorphism. -/
+def B : ℕ := sorry
 
-theorem challenge_2 : statement_02.{u} r L := sorry
+theorem challenge_2 : statement_02 r B := sorry

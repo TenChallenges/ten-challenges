@@ -20,6 +20,8 @@ interface LeaderboardEntry {
   parameter: string;
   /** Present only for the usual ordinal notation normalized by the checker. */
   ordinal_cnf?: unknown;
+  /** challenge_2 only: the certified bound B on the number of excluded minors. */
+  bound?: string;
   date?: string;
   /** Public link to the proof. Empty/absent for private submissions. */
   source_url?: string;
@@ -32,12 +34,14 @@ interface LeaderboardEntry {
 function buildSpecificUrl(args: {
   problemId: string;
   parameter: string;
+  bound: string;
   nickname: string;
   fullName: string;
 }): string {
   const params = new URLSearchParams();
   params.set("problem_id", args.problemId);
   params.set("parameter", args.parameter);
+  if (args.bound) params.set("bound", args.bound);
   params.set("nickname", args.nickname);
   if (args.fullName) params.set("full_name", args.fullName);
   return `https://github.com/${SUBMISSIONS_REPO}/issues/new?template=submit-specific.yml&${params.toString()}`;
@@ -67,6 +71,7 @@ function App() {
   const [specName, setSpecName] = useState("");
   const [specProblem, setSpecProblem] = useState("");
   const [specParameter, setSpecParameter] = useState("");
+  const [specBound, setSpecBound] = useState(""); // challenge_2 only
 
   // State for the "Prove or disprove full conjecture" form
   const [univNickname, setUnivNickname] = useState("");
@@ -101,7 +106,8 @@ function App() {
       problem: s.problem,
       result: s.parameter === "universal"
         ? (s.claim === "prove" ? "proven universally" : "fails for some r")
-        : `${s.claim === "prove" ? "holds" : "fails"} for r = ${s.parameter}`,
+        : `${s.claim === "prove" ? "holds" : "fails"} for r = ${s.parameter}` +
+          (s.bound ? ` with B = ${s.bound}` : ""),
       date: s.date || "",
       sourceUrl: s.source_url || "",
       // Missing submission_public (older entries) is treated as public.
@@ -124,20 +130,32 @@ function App() {
         (s) => s.problem === problem.id && s.claim === "prove"
       ));
     }
+    // Challenge 2 records pairs (r, B): report the largest r, then its smallest B.
     let best: bigint | null = null;
+    let bestBound: bigint | null = null;
     for (const s of submissions) {
       if (s.problem !== problem.id || s.claim !== "prove") continue;
       const parameter = s.parameter.trim();
       if (!/^\d+$/.test(parameter)) continue;
       const r = BigInt(parameter);
-      if (best === null || r > best) best = r;
+      const boundText = (s.bound ?? "").trim();
+      const bound = /^\d+$/.test(boundText) ? BigInt(boundText) : null;
+      if (best === null || r > best) {
+        best = r;
+        bestBound = bound;
+      } else if (r === best && bound !== null && (bestBound === null || bound < bestBound)) {
+        bestBound = bound;
+      }
     }
-    return `${label}: ${best === null ? "N/A" : `r = ${best}`}`;
+    const boundSummary =
+      problem.id === "challenge_2" && bestBound !== null ? ` (B = ${bestBound})` : "";
+    return `${label}: ${best === null ? "N/A" : `r = ${best}${boundSummary}`}`;
   };
 
   const specificGitHubUrl = buildSpecificUrl({
     problemId: specProblem,
     parameter: specParameter,
+    bound: specProblem === "challenge_2" ? specBound : "",
     nickname: specNickname,
     fullName: specName,
   });
@@ -371,7 +389,8 @@ function App() {
             <h3 style={{ fontSize: 17, marginBottom: 8 }}>Prove special case</h3>
             <p style={{ fontSize: 14, color: "#555", marginBottom: 20 }}>
               Submit a proof for a <strong>specific value</strong> of the parameter <code>r</code>.
-              For example, prove the bound holds for <code>r = 5</code>.
+              For example, prove the bound holds for <code>r = 5</code>. Challenge 2 also
+              takes the bound <code>B</code> your proof certifies.
             </p>
 
             <div className="form-row">
@@ -426,6 +445,18 @@ function App() {
                   placeholder="e.g. 5"
                 />
               </div>
+              {specProblem === "challenge_2" && (
+                <div className="form-group">
+                  <label className="form-label">Chosen bound B *</label>
+                  <input
+                    className="form-input"
+                    type="text"
+                    value={specBound}
+                    onChange={(e) => setSpecBound(e.target.value)}
+                    placeholder="e.g. 7"
+                  />
+                </div>
+              )}
             </div>
 
             <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>

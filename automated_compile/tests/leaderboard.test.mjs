@@ -17,7 +17,7 @@ const { leaderboardRows } = await import(
 const entry = (rank, parameter, problem = "challenge_8") => ({ rank, parameter, problem });
 
 test("each natural-number challenge orders parameters decreasingly", () => {
-  for (const number of [1, 2, 3, 4, 5, 7, 8, 9]) {
+  for (const number of [1, 3, 4, 5, 7, 8, 9]) {
     const problem = `challenge_${number}`;
     const original = [entry(2, "3", problem), entry(5, "100", problem), entry(8, "20", problem)];
     const rows = leaderboardRows(original, problem);
@@ -26,6 +26,18 @@ test("each natural-number challenge orders parameters decreasingly", () => {
     assert.deepEqual(rows.map(e => e.rank), [5, 8, 2]);
     assert.deepEqual(original.map(e => e.parameter), ["3", "100", "20"]);
   }
+});
+
+test("challenge 2 orders pairs by r decreasingly, then by B increasingly", () => {
+  const pair = (rank, r, B) => ({ rank, parameter: r, bound: B, problem: "challenge_2" });
+  const original = [
+    pair(1, "5", "10"), pair(2, "6", "100"), pair(3, "5", "9"), pair(4, "5", "9"),
+    pair(5, "4", "1"), pair(6, "5", undefined), pair(7, "universal", undefined),
+  ];
+  const rows = leaderboardRows(original, "challenge_2");
+  assert.deepEqual(rows.map(e => e.rank), [7, 2, 3, 4, 1, 6, 5]);
+  assert.deepEqual(rows.map(e => e.displayRank), [1, 2, 3, 4, 5, 6, 7]);
+  assert.deepEqual(leaderboardRows(original, "all").map(e => e.displayRank), [1, 2, 3, 4, 5, 6, 7]);
 });
 
 test("zero, large parameters, and equal values are compared exactly", () => {

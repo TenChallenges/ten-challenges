@@ -8,7 +8,7 @@
      and replace each `sorry` (pick a value for `r`, and supply the proof).
   3. Extra helpers can live in `Submission/<Name>.lean` and be imported here.
   4. Some challenges ask for more data than `r` alone — e.g. `challenge_2`
-     also requires the explicit excluded-minor list `L`.
+     also requires the bound `B` on the number of excluded minors.
      The challenge file lists everything to fill in.
 
   CI evaluates the module `Submission.Main`, so your `r` and `theorem challenge_N`

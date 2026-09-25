@@ -63,9 +63,9 @@
 \begin{definition}[Matroid]
 A \emph{matroid} is a pair $M=(E,\mathcal I)$ consisting of a finite set $E$ and a collection $\mathcal I$ of subsets of $E$, called the \emph{independent sets}, such that:
 \begin{enumerate}
-\item $\emptyset \in \mathcal I$;
-\item if $I\in \mathcal I$ and $J\subseteq I$, then $J\in \mathcal I$;
-\item if $I,J\in \mathcal I$ and $|I|<|J|$, then there is some $x\in J\setminus I$ such that $I\cup \{x\}\in \mathcal I$.
+	\item $\emptyset \in \mathcal I$;
+	\item if $I\in \mathcal I$ and $J\subseteq I$, then $J\in \mathcal I$;
+	\item if $I,J\in \mathcal I$ and $|I|<|J|$, then there is some $x\in J\setminus I$ such that $I\cup \{x\}\in \mathcal I$.
 \end{enumerate}
 The maximal independent sets of $M$ are called the \emph{bases} of $M$.
 \end{definition}
@@ -96,9 +96,9 @@ For $p^m=2$, the excluded minor list is known: In 1958, Tutte proved that a matr
 The excluded minors for $GF(4)$-representable matroids have been determined by Geelen, Gerards and Kapoor \cite{GeelenGerardsKapoor2000GF4}.
 In general, Rota's excluded-minor conjecture, proven by Geelen, Gerards and Whittle, says that for every finite field $\mathrm{GF}(p^m)$ there are only finitely many excluded minors for the class of $\mathrm{GF}(p^m)$-representable matroids \cite{Rota1971Combinatorial, GeelenGerardsWhittle2014Solving}. 
 
-We consider the following parametrized version of the well-known open problem to determine  for every finite field $\mathrm{GF}(p^m)$, the finitely many excluded minors explicitly.
+We consider the following parametrized version of the well-known open problem to determine for every finite field $\mathrm{GF}(p^m)$, an upper bound for the number of excluded minors up to isomorphism. 
 \begin{openproblem}
-Let $r$ be a positive integer. If there is a prime number $p$ and a positive integer $m$ such that $r=p^m$, then list the excluded minors for the class of $\mathrm{GF}(p^m)$-representable matroids and prove that the list is complete up to isomorphism.
+Let $r\in \mathbb{N}$. For every prime power $p^m \leq r$, provide a bound $B$ so that the class of $\mathrm{GF}(p^m)$-representable matroids have at most $B$ excluded minors up to isomorphism.
 \end{openproblem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

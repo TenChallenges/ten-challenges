@@ -59,13 +59,15 @@
 \section*{Challenge 3: Caccetta--H\"aggkvist Conjecture}
 \refstepcounter{section}
 
-\begin{definition}[Out-degree]
-Let $D$ be a simple digraph with vertex set $V(D)$ and edge set $E(D)$. The \emph{out-degree} $d^+(v)$ of a vertex $v$ is the number of edges $(v,w)\in E(D)$, and the \emph{minimum out-degree} of $D$ is the smallest out-degree of a vertex of $D$.
-\end{definition}
+%\begin{definition}[Out-degree]
+%Let $D$ be a simple digraph with vertex set $V(D)$ and edge set $E(D)$. The \emph{out-degree} $d^+(v)$ of a vertex $v$ is the number of edges $(v,w)\in E(D)$, and the \emph{minimum out-degree} of $D$ is the number $\min_{v\in V\ev{D}} d^+(v)$. 
+%\end{definition}
+%
+%\begin{definition}[Directed cycle]
+%A \emph{directed cycle of length $\ell\geq 2$} in a simple digraph $D$ is a sequence $v_0,\dots,v_{\ell-1}$ of distinct vertices such that $(v_i,v_{i+1})\in E(D)$ for every $i$, where the indices are taken modulo $\ell$.
+%\end{definition}
 
-\begin{definition}[Directed cycle]
-A \emph{directed cycle of length $\ell\geq 2$} in a simple digraph $D$ is a sequence $v_0,\dots,v_{\ell-1}$ of distinct vertices such that $(v_i,v_{i+1})\in E(D)$ for every $i$, where the indices are taken modulo $\ell$.
-\end{definition}
+Every simple digraph in which each vertex has an out-neighbour contains a directed cycle, but not necessarily a short one. The Caccetta--H\"aggkvist conjecture predicts exactly how the minimum out-degree forces short cycles. The natural example is the digraph on $n$ cyclically ordered vertices in which every vertex is joined to the next $r$ vertices: it has minimum out-degree $r$, and its shortest directed cycle has length $\lceil n/r\rceil$. The conjecture asserts that no digraph with minimum out-degree $r$ does better.
 
 
 \begin{conjecture}[Caccetta--H\"aggkvist Conjecture \mbox{\cite{caccetta1978minimal}}]\label{conj:ch}

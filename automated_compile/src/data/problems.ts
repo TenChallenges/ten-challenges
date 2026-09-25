@@ -17,7 +17,7 @@ export const problems: Problem[] = [
   },
   {
     id: "challenge_3",
-    title: "Ramsey Numbers",
+    title: "Caccetta–Häggkvist Conjecture",
     htmlPath: "content/html/challenge_03.html",
   },
   {

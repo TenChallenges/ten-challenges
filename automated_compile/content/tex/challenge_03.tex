@@ -56,27 +56,24 @@
 
 \begin{document}
 
-\section*{Challenge 3: Ramsey Numbers}
+\section*{Challenge 3: Caccetta--H\"aggkvist Conjecture}
 \refstepcounter{section}
 
-\begin{definition}[Ramsey Number]
-Given $t\in \mathbb{N}$, the \emph{(diagonal) Ramsey number} \( R(t) \) is the smallest $n\in \mathbb{N}\cup \{\infty\}$ such that every simple graph \( G \) on \( n \) vertices contains either a clique of size \( t \) or an independent set of size \( t \).
+\begin{definition}[Digraph]
+A \emph{digraph} $D$ consists of a finite nonempty set $V(D)$ of vertices and a set $A(D)\subseteq V(D)\times V(D)$ of arcs with $(v,v)\notin A(D)$ for every vertex $v$. Thus $D$ has no loops and no multiple arcs, while arcs in both directions between two vertices are allowed. The \emph{out-degree} $d^+(v)$ of a vertex $v$ is the number of arcs $(v,w)\in A(D)$, and the \emph{minimum out-degree} of $D$ is the smallest out-degree of a vertex of $D$.
 \end{definition}
-By Ramsey's theorem, $R(t)$ is always an integer, which is upper bounded by $4^t$ \cite{ramsey1930formal, ramseygraham1990ramsey}.
-Erd\H{o}s proved that random graphs $G(n,p)$ give a lower bound of the form $\sqrt{2}^t$ for $t$ sufficently large \cite{erdos1947some}. An important problem  that can be traced back to Ramsey's original paper \cite{ramsey1930formal} is to get good upper and lower bounds for the Ramsey number.
 
-\begin{openproblem}[Scaled Ramsey problem]
-Let $r\in \mathbb{N}$.
-Provide decimal numbers $d_1$ and $d_2$ with $|d_2-d_1|\leq (4-\sqrt{2}) \cdot 0.96^r$ so that for all sufficiently large $t\in \mathbb{N}$
-\[
-d_1^t \leq R(t) \leq d_2^t.
-\]
-\end{openproblem}
+\begin{definition}[Directed cycle]
+A \emph{directed cycle of length $\ell\geq 2$} in a digraph $D$ is a sequence $v_0,\dots,v_{\ell-1}$ of distinct vertices such that $(v_i,v_{i+1})\in A(D)$ for every $i$, where the indices are taken modulo $\ell$.
+\end{definition}
 
-The scaled Ramsey problem for $r=0$ follows by combining the above mentioned works of Ramsey and Erd\H{o}s.
-The problem was solved for $r=1$ by Campos, Griffiths, Morris  and Sahasrabudhe
-\cite{campos2026exponential} combined with the better bound from the follow-up paper by 
-Gupta, Ndiaye, Norin and Wei \cite{gupta2024optimizing}.
+\begin{conjecture}[Caccetta--H\"aggkvist Conjecture \mbox{\cite{caccetta1978minimal}}]\label{conj:ch}
+Let $r\in \mathbb{N}$ with $r\geq 1$. Every digraph on $n$ vertices with minimum out-degree at least $r$ contains a directed cycle of length at most $\lceil n/r\rceil$.
+\end{conjecture}
+
+For $r=1$ the statement is elementary: following out-arcs from any vertex must eventually revisit a vertex, which yields a directed cycle, of length at most $n$. The conjecture was proved for $r=2$ by Caccetta and H\"aggkvist \cite{caccetta1978minimal}, for $r=3$ by Hamidoune \cite{hamidoune1987note}, and for $r=4$ and $r=5$ by Ho\`ang and Reed \cite{hoang1987note}. Shen proved it for every $r$ under the additional assumption $n\geq 2r^2-3r+1$ \cite{shen2000girth}. When $r$ is a constant fraction of $n$, the conjecture predicts that minimum out-degree at least $n/3$ forces a directed cycle of length at most $3$; it is known that minimum out-degree at least $(3-\sqrt{7})\,n\approx 0.354\,n$ suffices \cite{shen1998directed}. See \cite{west_cacchagg} for an overview.
+
+The challenge parameter is the minimum out-degree $r$. The first open case is $r=6$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \printbibliography

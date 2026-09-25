@@ -1,10 +1,8 @@
-import Defs_and_Lems.Ramsey
+import Defs_and_Lems.CaccettaHaggkvist
 
-/-- Eventual exponential bounds for `R(t, t)`
-with bases at most `(4 - √2) · 0.96^r` apart. -/
+/-- The Caccetta–Häggkvist conjecture at minimum out-degree `r`. -/
 def statement_03 (r : ℕ) : Prop :=
-  ∃ d₁ d₂ : ℝ, |d₁ - d₂| ≤ (4 - √2) * (0.96 : ℝ)^r ∧
-    ∃ T, ∀ t ≥ T, d₁ ^ t ≤ ramseyNumber t ∧ ramseyNumber t ≤ d₂ ^ t
+  CaccettaHaggkvistFor r
 
 /-- The challenge parameter. -/
 def r : ℕ := sorry

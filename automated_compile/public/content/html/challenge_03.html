@@ -16,26 +16,34 @@
 <h2 class="ltx_title ltx_title_section">Challenge 3: Caccetta–Häggkvist Conjecture</h2>
 
 <div id="Sx1.p1" class="ltx_para">
-<p class="ltx_p">Every simple digraph in which each vertex has an out-neighbour contains a directed cycle, but not necessarily a short one. The Caccetta–Häggkvist conjecture predicts exactly how the minimum out-degree forces short cycles. The natural example is the digraph on <math id="Sx1.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> cyclically ordered vertices in which every vertex is joined to the next <math id="Sx1.p1.m2" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> vertices: it has minimum out-degree <math id="Sx1.p1.m3" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math>, and its shortest directed cycle has length <math id="Sx1.p1.m4" class="ltx_Math" alttext="\lceil n/r\rceil" display="inline"><mrow><mo stretchy="false">⌈</mo><mrow><mi>n</mi><mo>/</mo><mi>r</mi></mrow><mo stretchy="false">⌉</mo></mrow></math>. The conjecture asserts that no digraph with minimum out-degree <math id="Sx1.p1.m5" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> does better.</p>
+<p class="ltx_p">Given a simple digraph, if each vertex has an out-neighbour, then it contains a directed cycle <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib40" title="Digraphs: theory, algorithms and applications" class="ltx_ref">1</a>]</cite>, but not necessarily a short one. As the minimum out-degree increases, girth is expected to decrease. A natural construction is the digraph on <math id="Sx1.p1.m1" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> cyclically ordered vertices, where each vertex is joined to the next <math id="Sx1.p1.m2" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> vertices. In this example, minimum out-degree is <math id="Sx1.p1.m3" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> and the girth is at least <math id="Sx1.p1.m4" class="ltx_Math" alttext="\lceil n/r\rceil" display="inline"><mrow><mo stretchy="false">⌈</mo><mrow><mi>n</mi><mo>/</mo><mi>r</mi></mrow><mo stretchy="false">⌉</mo></mrow></math>. The Caccetta–Häggkvist conjecture asserts that no digraph with minimum out-degree <math id="Sx1.p1.m5" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> can do better.</p>
 </div>
 <div id="S1.Thmtheorem1" class="ltx_theorem ltx_theorem_conjecture">
 <h6 class="ltx_title ltx_runin ltx_title_theorem">
-<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Conjecture 1.1</span></span><span class="ltx_text ltx_font_bold"> </span>(Caccetta–Häggkvist Conjecture <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib34" title="On minimal digraphs with given girth" class="ltx_ref">1</a>]</cite>)<span class="ltx_text ltx_font_bold">.</span>
+<span class="ltx_tag ltx_tag_theorem"><span class="ltx_text ltx_font_bold">Conjecture 1.1</span></span><span class="ltx_text ltx_font_bold"> </span>(Caccetta–Häggkvist Conjecture <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib34" title="On minimal digraphs with given girth" class="ltx_ref">2</a>]</cite>)<span class="ltx_text ltx_font_bold">.</span>
 </h6>
 <div id="S1.Thmtheorem1.p1" class="ltx_para">
 <p class="ltx_p">Let <math id="S1.Thmtheorem1.p1.m1" class="ltx_Math" alttext="r\in\mathbb{N}" display="inline"><mrow><mi>r</mi><mo>∈</mo><mi>ℕ</mi></mrow></math> with <math id="S1.Thmtheorem1.p1.m2" class="ltx_Math" alttext="r\geq 1" display="inline"><mrow><mi>r</mi><mo>≥</mo><mn>1</mn></mrow></math>. Every simple directed graph on <math id="S1.Thmtheorem1.p1.m3" class="ltx_Math" alttext="n" display="inline"><mi>n</mi></math> vertices with minimum out-degree at least <math id="S1.Thmtheorem1.p1.m4" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> has a cycle of length at most <math id="S1.Thmtheorem1.p1.m5" class="ltx_Math" alttext="\lceil n/r\rceil" display="inline"><mrow><mo stretchy="false">⌈</mo><mrow><mi>n</mi><mo>/</mo><mi>r</mi></mrow><mo stretchy="false">⌉</mo></mrow></math>.</p>
 </div>
 </div>
 <div id="Sx1.p2" class="ltx_para">
-<p class="ltx_p">For <math id="Sx1.p2.m1" class="ltx_Math" alttext="r=1" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>1</mn></mrow></math> the statement is elementary. The conjecture was proved for <math id="Sx1.p2.m2" class="ltx_Math" alttext="r=2" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>2</mn></mrow></math> by Caccetta and Häggkvist <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib34" title="On minimal digraphs with given girth" class="ltx_ref">1</a>]</cite>, for <math id="Sx1.p2.m3" class="ltx_Math" alttext="r=3" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>3</mn></mrow></math> by Hamidoune <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib35" title="A note on minimal directed graphs with given girth" class="ltx_ref">2</a>]</cite>, and for <math id="Sx1.p2.m4" class="ltx_Math" alttext="r=4" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>4</mn></mrow></math> and <math id="Sx1.p2.m5" class="ltx_Math" alttext="r=5" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>5</mn></mrow></math> by Hoàng and Reed <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib36" title="A note on short cycles in digraphs" class="ltx_ref">3</a>]</cite>. Shen proved it for every <math id="Sx1.p2.m6" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> under the additional assumption <math id="Sx1.p2.m7" class="ltx_Math" alttext="n\geq 2r^{2}-3r+1" display="inline"><mrow><mi>n</mi><mo>≥</mo><mrow><mrow><mrow><mn>2</mn><mo>⁢</mo><msup><mi>r</mi><mn>2</mn></msup></mrow><mo>−</mo><mrow><mn>3</mn><mo>⁢</mo><mi>r</mi></mrow></mrow><mo>+</mo><mn>1</mn></mrow></mrow></math> <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib38" title="On the girth of digraphs" class="ltx_ref">4</a>]</cite>.</p>
+<p class="ltx_p">For <math id="Sx1.p2.m1" class="ltx_Math" alttext="r=1" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>1</mn></mrow></math> the statement is elementary. The conjecture was proved for <math id="Sx1.p2.m2" class="ltx_Math" alttext="r=2" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>2</mn></mrow></math> by Caccetta and Häggkvist <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib34" title="On minimal digraphs with given girth" class="ltx_ref">2</a>]</cite>, for <math id="Sx1.p2.m3" class="ltx_Math" alttext="r=3" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>3</mn></mrow></math> by Hamidoune <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib35" title="A note on minimal directed graphs with given girth" class="ltx_ref">3</a>]</cite>, and for <math id="Sx1.p2.m4" class="ltx_Math" alttext="r=4" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>4</mn></mrow></math> and <math id="Sx1.p2.m5" class="ltx_Math" alttext="r=5" display="inline"><mrow><mi>r</mi><mo>=</mo><mn>5</mn></mrow></math> by Hoàng and Reed <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib36" title="A note on short cycles in digraphs" class="ltx_ref">4</a>]</cite>. Shen proved it for every <math id="Sx1.p2.m6" class="ltx_Math" alttext="r" display="inline"><mi>r</mi></math> under the additional assumption <math id="Sx1.p2.m7" class="ltx_Math" alttext="n\geq 2r^{2}-3r+1" display="inline"><mrow><mi>n</mi><mo>≥</mo><mrow><mrow><mrow><mn>2</mn><mo>⁢</mo><msup><mi>r</mi><mn>2</mn></msup></mrow><mo>−</mo><mrow><mn>3</mn><mo>⁢</mo><mi>r</mi></mrow></mrow><mo>+</mo><mn>1</mn></mrow></mrow></math> <cite class="ltx_cite ltx_citemacro_cite">[<a href="#bib.bib38" title="On the girth of digraphs" class="ltx_ref">5</a>]</cite>.</p>
 </div>
 </section>
 <section id="bib" class="ltx_bibliography">
 <h2 class="ltx_title ltx_title_bibliography">References</h2>
 
 <ul id="bib.L1" class="ltx_biblist">
-<li id="bib.bib34" class="ltx_bibitem ltx_bib_inproceedings">
+<li id="bib.bib40" class="ltx_bibitem ltx_bib_book">
 <span class="ltx_tag ltx_bib_key ltx_role_refnum ltx_tag_bibitem">[1]</span>
+<span class="ltx_bibblock"><span class="ltx_text ltx_bib_author">J. Bang-Jensen and G. Gutin</span><span class="ltx_text ltx_bib_year"> (2009)</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text ltx_bib_title">Digraphs: theory, algorithms and applications</span>.
+</span>
+<span class="ltx_bibblock"><span class="ltx_text ltx_bib_edition">2 edition</span>, <span class="ltx_text ltx_bib_series">Springer Monographs in Mathematics</span>,  <span class="ltx_text ltx_bib_publisher">Springer</span>.
+</span></li>
+<li id="bib.bib34" class="ltx_bibitem ltx_bib_inproceedings">
+<span class="ltx_tag ltx_bib_key ltx_role_refnum ltx_tag_bibitem">[2]</span>
 <span class="ltx_bibblock"><span class="ltx_text ltx_bib_author">L. Caccetta and R. Häggkvist</span><span class="ltx_text ltx_bib_year"> (1978)</span>
 </span>
 <span class="ltx_bibblock"><span class="ltx_text ltx_bib_title">On minimal digraphs with given girth</span>.
@@ -45,7 +53,7 @@
 <span class="ltx_bibblock"><span class="ltx_text ltx_bib_series">Congressus Numerantium</span>, Vol. <span class="ltx_text ltx_bib_volume">21</span>, <span class="ltx_text ltx_bib_pages"> pp. 181–187</span>.
 </span></li>
 <li id="bib.bib35" class="ltx_bibitem ltx_bib_article">
-<span class="ltx_tag ltx_bib_key ltx_role_refnum ltx_tag_bibitem">[2]</span>
+<span class="ltx_tag ltx_bib_key ltx_role_refnum ltx_tag_bibitem">[3]</span>
 <span class="ltx_bibblock"><span class="ltx_text ltx_bib_author">Y. O. Hamidoune</span><span class="ltx_text ltx_bib_year"> (1987)</span>
 </span>
 <span class="ltx_bibblock"><span class="ltx_text ltx_bib_title">A note on minimal directed graphs with given girth</span>.
@@ -53,7 +61,7 @@
 <span class="ltx_bibblock"><span class="ltx_text ltx_bib_journal">Journal of Combinatorial Theory, Series B</span> <span class="ltx_text ltx_bib_volume">43</span> (<span class="ltx_text ltx_bib_number">3</span>), <span class="ltx_text ltx_bib_pages"> pp. 343–348</span>.
 </span></li>
 <li id="bib.bib36" class="ltx_bibitem ltx_bib_article">
-<span class="ltx_tag ltx_bib_key ltx_role_refnum ltx_tag_bibitem">[3]</span>
+<span class="ltx_tag ltx_bib_key ltx_role_refnum ltx_tag_bibitem">[4]</span>
 <span class="ltx_bibblock"><span class="ltx_text ltx_bib_author">C. T. Hoàng and B. Reed</span><span class="ltx_text ltx_bib_year"> (1987)</span>
 </span>
 <span class="ltx_bibblock"><span class="ltx_text ltx_bib_title">A note on short cycles in digraphs</span>.
@@ -61,7 +69,7 @@
 <span class="ltx_bibblock"><span class="ltx_text ltx_bib_journal">Discrete Mathematics</span> <span class="ltx_text ltx_bib_volume">66</span> (<span class="ltx_text ltx_bib_number">1–2</span>), <span class="ltx_text ltx_bib_pages"> pp. 103–107</span>.
 </span></li>
 <li id="bib.bib38" class="ltx_bibitem ltx_bib_article">
-<span class="ltx_tag ltx_bib_key ltx_role_refnum ltx_tag_bibitem">[4]</span>
+<span class="ltx_tag ltx_bib_key ltx_role_refnum ltx_tag_bibitem">[5]</span>
 <span class="ltx_bibblock"><span class="ltx_text ltx_bib_author">J. Shen</span><span class="ltx_text ltx_bib_year"> (2000)</span>
 </span>
 <span class="ltx_bibblock"><span class="ltx_text ltx_bib_title">On the girth of digraphs</span>.

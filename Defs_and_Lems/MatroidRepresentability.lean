@@ -15,9 +15,10 @@ def IsGFRepresentable
 def IsExcludedMinorFor (P : Matroid α → Prop) (M : Matroid α) : Prop :=
   ¬ P M ∧ ∀ N : Matroid α, N <m M → P N
 
-/-- The excluded minors for `GF(pᵐ)`-representability number at most `B` up to
-isomorphism: some family of at most `B` matroids on `ℕ` meets every finite
-excluded minor up to isomorphism. -/
+/-- Given a prime power `pᵐ` and a number `B`, the following says that the
+class of `GF(pᵐ)`-representable matroids has at most `B` excluded minors, up
+to isomorphism. Equivalently, there is a set `S` of at most `B` matroids that
+contains, up to isomorphism, every excluded minor for `GF(pᵐ)`-representability. -/
 def ExcludedMinorsAtMost (p m : ℕ) [Fact p.Prime] (B : ℕ) : Prop :=
   ∃ S : Finset (Matroid ℕ), S.card ≤ B ∧
     ∀ {β : Type} (M : Matroid β), M.Finite →

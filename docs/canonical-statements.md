@@ -162,10 +162,10 @@ holds in every solved dimension (`d ∈ {1, 2, 3, 8, 24}`, largest known `24`) a
 is open in general. `challenge_07.lean` fixes the dimension via `def d`; the
 universal version quantifies over all `d`.
 
-## §8 — challenge_08 (Ryser's Hypergraph Conjecture)
+## §8 — challenge_08 (Ryser's FinHypergraph Conjecture)
 
 Existing defs match `challenge_09.lean` and `challenge_08_univ.lean` —
-all the structure (`Hypergraph`, `IsUniform`, `IsPartite`, …,
+all the structure (`FinHypergraph`, `IsUniform`, `IsPartite`, …,
 `RyserConjectureFor`) is in the file. Missing: `def r` and a top-level
 `theorem challenge_8`.
 
@@ -177,7 +177,7 @@ def r : ℕ := sorry
 theorem challenge_8 : RyserConjectureFor.{u} r := sorry
 ```
 
-(The existing `Hypergraph` namespace in challenge_08.lean would need to
+(The existing `FinHypergraph` namespace in challenge_08.lean would need to
 end before this declaration, or the theorem moves inside the namespace.)
 
 ---

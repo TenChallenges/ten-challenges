@@ -1,14 +1,14 @@
 import Mathlib.Order.Lattice.Nat
 
 /-- A finite hypergraph with edges contained in its vertex set. -/
-structure Hypergraph (α : Type*) where
+structure FinHypergraph (α : Type*) where
   vertices : Finset α
   edges : Set (Finset α)
   edges_subset_vertices : ∀ e ∈ edges, e ⊆ vertices
 
-variable {V : Type*} [DecidableEq V] (H : Hypergraph V)
+variable {V : Type*} [DecidableEq V] (H : FinHypergraph V)
 
-namespace Hypergraph
+namespace FinHypergraph
 
 /-- An `r`-uniform hypergraph has every edge of cardinality `r`. -/
 def IsUniform (r : ℕ) : Prop :=
@@ -45,4 +45,4 @@ noncomputable def matchingNumber : ℕ :=
 def RyserConjectureFor (r : ℕ) : Prop :=
   H.IsUniform r → H.IsPartite r → H.coverNumber ≤ (r - 1) * H.matchingNumber
 
-end Hypergraph
+end FinHypergraph

@@ -74,10 +74,10 @@ Let $p$ be a prime number. Let $m$ be a positive integer. Let $\mathrm{GF}(p^m)$
 
 \begin{definition}[Matroid minor]
 Let $M$ be a matroid with ground set $E$. 
-Given a subset $D \subseteq E$, the \emph{deletion} of $D$ from $M$, denoted $M\setminus D$, has as its ground set $E\setminus D$ and its independent sets are those of $M$ contained in $E\setminus D$.
-The \textit{dual} of $M$, denoted $M^*$, is the matroid with the same ground set as $M$, where a set is independent whenever its complement includes a base of $M$.  Given a subset $C\subseteq E$, the \emph{contraction} of $C$ from $M$ is the matroid $M/C := (M^* \setminus C)^*$.
+Given a subset $D \subseteq E$, the \emph{deletion} of $D$ from $M$, denoted $M\backslash D$, has as its ground set $E\setminus D$ and its independent sets are those of $M$ contained in $E\setminus D$.
+The \textit{dual} of $M$, denoted $M^*$, is the matroid with the same ground set as $M$, where a set is independent whenever its complement includes a base of $M$.  Given a subset $C\subseteq E$, the \emph{contraction} of $C$ from $M$ is the matroid $M/C := (M^*\backslash C)^*$.
 
-Given matroids $M,N$, then $N$ is a \emph{minor} of $M$ if there exist disjoint sets $C$ and $D$ such that $N = M/C \setminus D$. A minor of $M$ is \textit{proper} if it is not equal to $M$.
+Given matroids $M,N$, then $N$ is a \emph{minor} of $M$ if there exist disjoint sets $C$ and $D$ such that $N = M/C\backslash D$. A minor of $M$ is \textit{proper} if it is not equal to $M$.
 \end{definition}
 
 \begin{definition}[Excluded minor]

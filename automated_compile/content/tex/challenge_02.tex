@@ -63,7 +63,7 @@ A \emph{matroid} is a pair $M=(E,\mathcal I)$ consisting of a finite set $E$ and
 \begin{enumerate}
 \item $\emptyset \in \mathcal I$;
 \item if $I\in \mathcal I$ and $J\subseteq I$, then $J\in \mathcal I$;
-\item if $I,J\in \mathcal I$ and $|I|<|J|$, then there is some $x\in J\setminus I$ such that $I\cup \{x\}\in \mathcal I$.
+\item if $I,J\in \mathcal I$ and $|I|<|J|$, then there is some $x\in J- I$ such that $I\cup \{x\}\in \mathcal I$.
 \end{enumerate}
 The maximal independent sets of $M$ are called the \emph{bases} of $M$.
 \end{definition}
@@ -74,7 +74,7 @@ Let $p$ be a prime number. Let $m$ be a positive integer. Let $\mathrm{GF}(p^m)$
 
 \begin{definition}[Matroid minor]
 Let $M$ be a matroid with ground set $E$. 
-Given a subset $D \subseteq E$, the \emph{deletion} of $D$ from $M$, denoted $M\backslash D$, has as its ground set $E\setminus D$ and its independent sets are those of $M$ contained in $E\setminus D$.
+Given a subset $D \subseteq E$, the \emph{deletion} of $D$ from $M$, denoted $M\backslash D$, has as its ground set $E- D$ and its independent sets are those of $M$ contained in $E- D$.
 The \textit{dual} of $M$, denoted $M^*$, is the matroid with the same ground set as $M$, where a set is independent whenever its complement includes a base of $M$.  Given a subset $C\subseteq E$, the \emph{contraction} of $C$ from $M$ is the matroid $M/C := (M^*\backslash C)^*$.
 
 Given matroids $M,N$, then $N$ is a \emph{minor} of $M$ if there exist disjoint sets $C$ and $D$ such that $N = M/C\backslash D$. A minor of $M$ is \textit{proper} if it is not equal to $M$.

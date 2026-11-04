@@ -7,3 +7,7 @@ the challenge parameter (and any additional data), and the theorem to prove.
 Supporting definitions and lemmas live in subject-named modules under
 `Defs_and_Lems/`; importing a challenge also makes its supporting definitions
 available. Keep docstrings brief and mathematical.
+
+## License
+
+Apache License 2.0, see [LICENSE](LICENSE).

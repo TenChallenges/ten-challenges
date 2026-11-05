@@ -188,7 +188,7 @@ function App() {
             Ten Challenges
           </h1>
           <p style={{ fontSize: 16, color: "#333", maxWidth: 640 }}>
-            Parameterized well-known problems in combinatorics, formalized in Lean 4.
+            A parameterized problem list in combinatorics, formalized in Lean 4.
           </p>
           <p style={{ fontSize: 14, color: "#555", marginTop: 12 }}>
             <a href={`https://github.com/leanprover/lean4/releases/tag/${LEAN_VERSION}`}>
@@ -206,7 +206,7 @@ function App() {
 
         {/* Problems */}
         <section id="problems">
-          <h2 className="section-heading">Well-Known Problems</h2>
+          <h2 className="section-heading">Problem List</h2>
           <p style={{ fontSize: 15, color: "#333", marginBottom: 20 }}>
             Click a problem to view its statement and details.
           </p>
